@@ -11,9 +11,10 @@
     </tr>
   </thead>
 
-  <tbody>
+  <tbody id="inspections" data-url="<%= sort_inspections_path %>">
     <% @inspections.each do |inspection| %>
-      <tr>
+      <tr id="<%= dom_id(inspection)%>">
+        <td><%= inspection.position %></td>
         <td><%= inspection.title %></td>
         <td><%= inspection.description %></td>
         <td><%= link_to 'Show', inspection %></td>

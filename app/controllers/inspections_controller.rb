@@ -4,8 +4,18 @@ class InspectionsController < ApplicationController
   # GET /inspections
   # GET /inspections.json
   def index
-    @inspections = Inspection.all
+    @inspections = Inspection.order(:position)
   end
+
+
+  def sort
+    params[:inspection].each_with_index do |id, index|
+      Inspection.where(id:id).update_all(position: index + 1)
+    end
+    
+    head :ok
+  end
+
 
   # GET /inspections/1
   # GET /inspections/1.json
